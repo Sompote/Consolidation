@@ -1,0 +1,49 @@
+title = "Four layers with oedometer data and two load stages"
+base = "drained"         # sand below the clay
+time_unit = "day"        # cv in m2/day, times in days
+
+[[layer]]
+name = "crust"
+h  = 1.5
+cv = 0.010               # m2/day
+mv = 0.3e-3              # given directly
+
+[[layer]]
+name = "very soft clay"
+h  = 4.0
+cv = 0.003
+e0 = 2.8                 # mv computed as secant from oedometer data
+Cc = 1.2
+Cr = 0.12
+sigma_v0 = 18.0          # kPa, at mid-layer
+sigma_p  = 25.0          # kPa
+
+[[layer]]
+name = "soft clay"
+h  = 6.0
+cv = 0.004
+e0 = 2.2
+Cc = 0.9
+Cr = 0.09
+sigma_v0 = 40.0
+sigma_p  = 52.0
+
+[[layer]]
+name = "medium clay"
+h  = 4.0
+cv = 0.008
+mv = 0.5e-3
+
+[[load]]
+start = 0
+end   = 30
+dq    = 35.0
+
+[[load]]
+start = 180
+end   = 210
+dq    = 25.0
+
+[output]
+times = [30, 90, 180, 210, 365, 730, 1825, 3650]
+profile_times = [210, 730]

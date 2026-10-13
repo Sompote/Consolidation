@@ -1,0 +1,24 @@
+title = "Two layers: soft clay over stiffer clay (paper, Section 8)"
+base = "sealed"          # "sealed" or "drained" bottom boundary; top is always drained
+time_unit = "yr"         # "yr" or "day" (applies to cv, load times and output times)
+
+[[layer]]
+name = "soft clay"
+h  = 4.0                 # m
+cv = 1.0                 # m2/yr
+mv = 2.0e-3              # 1/kPa
+
+[[layer]]
+name = "stiffer clay"
+h  = 6.0
+cv = 4.0
+mv = 0.5e-3
+
+[[load]]                 # instantaneous step: start = end
+start = 0.0
+end   = 0.0
+dq    = 100.0            # kPa
+
+[output]
+times = [0.5, 1, 2, 5, 10, 20, 30, 50]
+profile_times = [1, 5, 20]

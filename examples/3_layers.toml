@@ -1,0 +1,30 @@
+title = "Three layers: crust, soft clay, medium clay"
+base = "sealed"
+time_unit = "yr"
+
+[[layer]]
+name = "weathered crust"
+h  = 2.0
+cv = 5.0
+mv = 0.4e-3
+
+[[layer]]
+name = "soft clay"
+h  = 8.0
+cv = 1.2
+mv = 2.5e-3
+
+[[layer]]
+name = "medium clay"
+h  = 5.0
+cv = 2.5
+mv = 0.8e-3
+
+[[load]]                 # ramp: fill placed over 60 days (start/end in years)
+start = 0.0
+end   = 0.164
+dq    = 60.0
+
+[output]
+times = [0.25, 0.5, 1, 2, 5, 10, 20, 50, 100]
+profile_times = [1, 10, 50]

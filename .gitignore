@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+*.png
+*.csv
+.venv/
+
+# keep README figures
+!docs/figures/*.png
