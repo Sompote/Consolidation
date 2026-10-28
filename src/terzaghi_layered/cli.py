@@ -154,7 +154,8 @@ def report(case: Case, tol: float = 1e-6, csv_path: str | None = None, plot_path
         U = v / case.final_settlement_mm if case.final_settlement_mm else float("nan")
         rows.append(dict(time=t * (DAYS_PER_YEAR if unit == "day" else 1), time_unit=unit, settlement_mm=v,
                          lower_mm=lo, upper_mm=hi, U=U))
-        w(f"{_fmt_time(t, unit):>12}{v:>17.2f}{lo:>11.2f}{hi:>11.2f}{U:>11.4f}\n")
+        flag = "" if case.tolerance_met(t, tol) else "  tolerance not met"
+        w(f"{_fmt_time(t, unit):>12}{v:>17.2f}{lo:>11.2f}{hi:>11.2f}{U:>11.4f}{flag}\n")
     w(f"(bounds: certified truncation interval of the exact series, tolerance {tol:g} per load step)\n")
     profiles = []
     if case.profile_times:

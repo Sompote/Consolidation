@@ -84,6 +84,11 @@ class Case:
                 hi += 1000 * self.column.mass * dq * b
         return 0.5 * (lo + hi), lo, hi
 
+    def tolerance_met(self, t: float, tol: float = 1e-6) -> bool:
+        """True when every load step active at time t meets the truncation tolerance."""
+        return all(self.column.degree(t - tk, tol).half_width <= tol
+                   for tk, _ in self.steps() if t > tk)
+
     def excess_pressure(self, z, t: float) -> np.ndarray:
         """Excess pore pressure (kPa) at depths z (m) and time t (yr) under the load history."""
         u = np.zeros_like(np.atleast_1d(np.asarray(z, float)))
